@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+# Usage:
+# ./run [--dry] [filter-word] 
+echo "Environment Setup -- Slate Rehm"
+
+
+script_dir=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
+filter=""
+dry="0"
+
+# Detect dry run stuff
+while [[ $# > 0 ]]; do
+    if [[ "$1" == "--dry" ]]; then
+        dry="1"
+    else 
+        filter="$1"
+    fi
+
+    shift #remove the first arguement from the input
+done
+
+
+# Define dry run function for logging across all scripts
+log() {
+    if [[ $dry == "1" ]]; then
+        echo "[DRY_RUN]: $@" #print everthing passed in.
+    else 
+        echo "$@"
+    fi
+}
+
+execute() {
+    log "execute $@"
+    if [[ $dry == "1" ]]; then
+        return
+    else
+        "$@"
+    fi
+}
+
+log "$script_dir -- $filter"
+
+cd $script_dir
+# Get a list of all scripts in runs directory seperated by newline
+scripts=$(find ./runs -maxdepth 1 -mindepth 1 -executable -type f)
+echo "$scripts"
+for script in $scripts; do
+    if echo "$script" | grep -qv "$filter"; then
+        log "filtering out $script"
+        continue
+    fi
+    # else
+    echo "executing $script"
+
+    execute ./$script
+
+done
