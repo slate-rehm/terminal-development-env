@@ -14,3 +14,8 @@ make CMAKE_BUILD_TYPE=RelWithDebInfo
 sudo make install
 
 echo "Installed Neovim"
+
+echo "Configuring Neovim"
+rm -rfs ~/.config/nvim #remove the default config
+cp -r $0/config/nvim ~/.config/. #add config
+
