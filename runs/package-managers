@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+# Function to check exit status and exit if failed
+check_status() {
+    if [ $? -ne 0 ]; then
+        echo "Error: $1"
+        exit 1
+    fi
+}
+echo "Install Node Version Manager (nvm)"
+wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+check_status "Failed to install nvm"
+
+echo "Configuring path for nvm"
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use
+
+echo "Installing Node v24"
+nvm install 24
+check_status "Failed to install Node v24"
+
+echo "Installing Bun"
+
+echo "Installing preq for Bun (unzip)"
+sudo apt install unzip
+check_status "Failed to install unzip"
+
+echo "Latest version will be installed via NPM"
+# sudo curl -fsSL https://bun.sh/install | bash # This wasn't working on June 30th, 2025 Ubuntu.
+npm install -g bun
+check_status "Failed to install Bun globally via npm"
+
+echo "Installed Bun"
