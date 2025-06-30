@@ -14,4 +14,4 @@ cd $HOME/personal/neovim
 make CMAKE_BUILD_TYPE=RelWithDebInfo
 sudo make install
 
-eco "Installed Neovim
+echo "Installed Neovim"
