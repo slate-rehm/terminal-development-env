@@ -3,6 +3,8 @@
 # ./run [--dry] [filter-word] 
 echo "Environment Setup -- Slate Rehm"
 
+echo "Running apt update - This is the sole guarntee for install scripts"
+sudo apt update
 
 script_dir=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 filter=""
