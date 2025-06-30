@@ -6,6 +6,6 @@ sudo snap install ghostty --classic
 echo "The ghost is in the machine."
 
 echo "Setting up ghostty config"
-sudo rm -fs $HOME/.config/ghostty/config
+sudo rm -f $HOME/.config/ghostty/config
 cp $0/config/ghostty.config $HOME/.config/ghostty/config
 echo "The machine is mine."
