@@ -17,5 +17,7 @@ echo "Installed Neovim"
 
 echo "Configuring Neovim"
 rm -rf ~/.config/nvim #remove the default config
-cp -r $0/config/nvim ~/.config/. #add config
+SCRIPT_DIRECTORY=$(dirname "$0")
+
+cp -r "$SCRIPT_DIRECTORY/configs/nvim" "~/.config/" #add config
 

@@ -7,5 +7,8 @@ echo "The ghost is in the machine."
 
 echo "Setting up ghostty config"
 sudo rm -f $HOME/.config/ghostty/config
-cp $0/config/ghostty.config $HOME/.config/ghostty/config
+mkdir $HOME/.config/ghostty #mkdir if not exist
+SCRIPT_DIRECTORY = $(dirname "$0")
+
+cp $SCRIPT_DIRECTORY/config/ghostty.config $HOME/.config/ghostty/config
 echo "The machine is mine."
