@@ -57,3 +57,6 @@ for script in $scripts; do
     execute ./$script
 
 done
+
+echo "Executing config"
+execute "$script_dir/dev-env"

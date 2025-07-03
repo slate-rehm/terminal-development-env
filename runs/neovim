@@ -15,9 +15,3 @@ sudo make install
 
 echo "Installed Neovim"
 
-echo "Configuring Neovim"
-rm -rf ~/.config/nvim #remove the default config
-SCRIPT_DIRECTORY=$(dirname "$0")
-
-cp -r "$SCRIPT_DIRECTORY/configs/nvim" "~/.config/" #add config
-

@@ -10,7 +10,7 @@ set expandtab
 set smartindent
 
 " Set colorscheme
-colorscheme desert
+colorscheme slate
 
 
 " Disable <Space> moving the cursor right
